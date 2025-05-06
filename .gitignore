@@ -1,0 +1,15 @@
+# Xcode
+*.xcworkspace
+*.xcuserdata
+DerivedData/
+build/
+
+# Swift Package Manager
+.swiftpm/
+.build/
+
+# API Keys
+Resources/Config.plist
+
+# Otros
+.DS_Store
