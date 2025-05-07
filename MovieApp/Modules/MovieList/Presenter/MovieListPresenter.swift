@@ -8,6 +8,7 @@ import Foundation
 
 @MainActor
 class MovieListPresenter: ObservableObject {
+    
     @Published var movies: [Movie] = []
     @Published var errorMessage: String?
 
@@ -17,18 +18,15 @@ class MovieListPresenter: ObservableObject {
         self.interactor = interactor
     }
 
-    func onAppear() {
-        fetchMovies()
-    }
-
-    func fetchMovies() {
-        Task {
-            do {
-                let movies = try await interactor.fetchMovies()
-                self.movies = movies
-            } catch {
-                self.errorMessage = "Hubo un error al obtener las películas."
-            }
+    func fetchMovies(for category: MovieCategory) async {
+        do {
+            let movies = try await interactor.fetchMovies(endpoint: category.endpoint)
+            self.movies = movies
+            self.errorMessage = nil
+        } catch {
+            self.errorMessage = "Hubo un error al obtener las películas."
+            self.movies = []
         }
     }
 }
+

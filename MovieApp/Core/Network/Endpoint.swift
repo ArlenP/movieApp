@@ -9,12 +9,18 @@ import Foundation
 
 enum Endpoint {
     case popularMovies
+    case nowPlaying
+    case topRated
     case movieDetail(id: Int)
 
     var path: String {
         switch self {
         case .popularMovies:
             return "/3/movie/popular"
+        case .nowPlaying:
+            return "/3/movie/now_playing"
+        case .topRated:
+            return "/3/movie/top_rated"
         case .movieDetail(let id):
             return "/3/movie/\(id)"
         }
