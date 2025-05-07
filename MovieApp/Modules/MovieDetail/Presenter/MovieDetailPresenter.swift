@@ -12,9 +12,9 @@ import SwiftUI
 @MainActor
 class MovieDetailPresenter: ObservableObject {
     private let interactor: MovieDetailInteractorProtocol
-    private(set) var movieDetail: MovieDetail?
-    private(set) var errorMessage: String?
-
+    @Published var movieDetail: MovieDetail?
+    @Published var errorMessage: String?
+    
     init(interactor: MovieDetailInteractorProtocol) {
         self.interactor = interactor
     }
@@ -22,6 +22,7 @@ class MovieDetailPresenter: ObservableObject {
     func fetchMovieDetail(id: Int) async {
         do {
             movieDetail = try await interactor.fetchMovieDetail(id: id)
+            print("Movie detail loaded: \(movieDetail?.title ?? "Sin título")")
         } catch {
             errorMessage = "Error fetching movie details"
         }
