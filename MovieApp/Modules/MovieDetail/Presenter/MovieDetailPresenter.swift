@@ -27,4 +27,13 @@ class MovieDetailPresenter: ObservableObject {
             errorMessage = "Error fetching movie details"
         }
     }
+    func genreNames(for movie: MovieDetail) -> String {
+        movie.genres?.map { $0.name }.joined(separator: ", ") ?? "N/A"
+    }
+    func formattedRuntime(for movie: MovieDetail) -> String {
+        guard let runtime = movie.runtime else { return "Duración: N/A" }
+        let hours = runtime / 60
+        let minutes = runtime % 60
+        return "\(hours)h \(minutes)min"
+    }
 }

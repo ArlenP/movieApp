@@ -13,13 +13,6 @@ struct MovieListView: View {
         NavigationView {
             if #available(iOS 15.0, *) {
                 VStack {
-                    /*Picker("Categoría", selection: $presenter.selectedCategory) {
-                        ForEach(MovieCategory.allCases) { category in
-                            Text(category.rawValue).tag(category)
-                        }
-                    }
-                    .pickerStyle(.underlineSegmented)
-                    .padding(.horizontal)*/
                     SegmentedPicker(
                         options: MovieCategory.allCases,
                         selection: $presenter.selectedCategory
@@ -73,13 +66,16 @@ struct MovieListView: View {
                                         Text(movie.title)
                                             .font(.headline)
 
-                                        Text("Duración: \(movie.runtime != nil ? "\(movie.runtime!) min" : "N/A")")
+                                        Text(presenter.formattedRuntime(for: movie))
                                             .font(.subheadline)
                                             .foregroundColor(.gray)
 
-                                        Text("Rating: \(String(format: "%.1f", movie.voteAverage ?? 0.0))/10")
-                                            .font(.subheadline)
-                                            .foregroundColor(.gray)
+                                        HStack(spacing: 4) {
+                                            StarRatingView(rating: movie.voteAverage ?? 0.0)
+                                            Text(String(format: "%.1f", movie.voteAverage ?? 0.0))
+                                                .font(.subheadline)
+                                                .foregroundColor(.gray)
+                                        }
 
                                         Text("Géneros: \(presenter.genreNames(for: movie))")
                                             .font(.caption)

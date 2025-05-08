@@ -15,4 +15,19 @@ struct MovieDetail: Decodable {
     let posterPath: String?
     let runtime: Int?
     let genres: [Genre]?
+    let voteAverage: Double?
+    let voteCount: Int
+    let productionCountries: [ProductionCountry]
+    let originalLanguage: String
+    let originCountry: [String]
+    let belongsToCollection: MovieCollection?
+}
+struct ProductionCountry: Decodable {
+    let name: String
+}
+struct MovieCollection: Decodable {
+    let id: Int
+    let name: String
+    let posterPath: String?
+    let backdropPath: String?
 }

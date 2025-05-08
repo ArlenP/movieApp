@@ -49,9 +49,15 @@ class MovieListPresenter: ObservableObject {
                 movies[index].runtime = detail.runtime
                 movies[index].genres = detail.genres
             } catch {
-                // Puedes ignorar o mostrar un log si quieres
+               
             }
         }
+    }
+    func formattedRuntime(for movie: Movie) -> String {
+        guard let runtime = movie.runtime else { return "Duración: N/A" }
+        let hours = runtime / 60
+        let minutes = runtime % 60
+        return "Duración: \(hours)h \(minutes)min"
     }
 }
 
