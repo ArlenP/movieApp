@@ -31,3 +31,14 @@ struct MovieCollection: Decodable {
     let posterPath: String?
     let backdropPath: String?
 }
+struct MovieVideoResponse: Decodable {
+    let results: [MovieVideo]
+}
+
+struct MovieVideo: Decodable, Identifiable {
+    let id: String 
+    let key: String
+    let name: String
+    let site: String
+    let type: String
+}
