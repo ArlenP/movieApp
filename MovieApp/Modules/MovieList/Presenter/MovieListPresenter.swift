@@ -32,6 +32,7 @@ class MovieListPresenter: ObservableObject {
             let movies = try await interactor.fetchMovies(endpoint: category.endpoint)
             self.movies = movies
             self.errorMessage = nil
+            await enrichMoviesWithDetails()
         } catch {
             self.errorMessage = "Hubo un error al obtener las películas."
             self.movies = []
@@ -39,6 +40,18 @@ class MovieListPresenter: ObservableObject {
     }
     func genreNames(for movie: Movie) -> String {
         movie.genres?.map { $0.name }.joined(separator: ", ") ?? "N/A"
+    }
+    func enrichMoviesWithDetails() async {
+        for index in movies.indices {
+            let movieID = movies[index].id
+            do {
+                let detail = try await interactor.fetchMovieDetail(for: movieID)
+                movies[index].runtime = detail.runtime
+                movies[index].genres = detail.genres
+            } catch {
+                // Puedes ignorar o mostrar un log si quieres
+            }
+        }
     }
 }
 

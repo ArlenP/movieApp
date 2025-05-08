@@ -19,7 +19,7 @@ struct SegmentedPicker: View {
                     VStack(spacing: 4) {
                         Text(option.rawValue.capitalized)
                             .font(.subheadline)
-                            .foregroundColor(selection == option ? .blue : .gray)
+                            .foregroundColor(selection == option ? Color(red: 0.3, green: 0.3, blue: 0.3) : .gray)
                         
                         Rectangle()
                             .frame(height: 2)
@@ -36,7 +36,7 @@ struct SegmentedPicker: View {
                 }
             }
         }
-        .background(Color(.systemGray6))
+        .background(Color(.white))
         .cornerRadius(4)
     }
 }

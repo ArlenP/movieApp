@@ -17,4 +17,8 @@ class MovieListInteractor {
         let response: MovieResponse = try await apiClient.fetch(endpoint, type: MovieResponse.self)
         return response.results
     }
+    func fetchMovieDetail(for movieID: Int) async throws -> MovieDetail {
+        let endpoint = Endpoint.movieDetail(id: movieID)
+        return try await apiClient.fetch(endpoint, type: MovieDetail.self)
+    }
 }
