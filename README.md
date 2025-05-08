@@ -12,7 +12,7 @@ Se implementa el patrón **VIPER** (View, Interactor, Presenter, Entity, Router)
 - SwiftUI
 - VIPER
 - URLSession (100% nativo)
-- Plist para almacenamiento seguro de claves API
+- Config.plist para configuración segura de claves API
 
 ## Funcionalidades
 
@@ -24,4 +24,13 @@ Se implementa el patrón **VIPER** (View, Interactor, Presenter, Entity, Router)
 ## Configuración
 
 1. Crea un archivo `Config.plist` en el directorio `Resources/`.
-2. Agrega la clave de la API:
+2. Agrega la clave de la API
+
+## Pantallas
+
+## Próximas mejoras
+- Búsqueda por título
+- Favoritos locales
+- Tests unitarios
+- Modo oscuro
+
